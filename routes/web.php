@@ -5,7 +5,9 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarControllerAdmin;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;    
+use App\Http\Controllers\HomeController; 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,8 @@ Auth::routes();
 
 
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
 
 Route::group(['middleware' => ['auth']],function (){
 
@@ -42,15 +46,21 @@ Route::group(['middleware' => ['auth']],function (){
         Route::put('/car/{car}/update_admin',[CarControllerAdmin::class,'update_admin'])->name('product.update.admin');
         Route::delete('/car/{car}/delete_admin',[CarControllerAdmin::class,'delete_admin'])->name('product.delete.admin');
 
+//Category routes
 
+Route::get('category',[CategoryController::class,'index'])->name('category.index');
+Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
+Route::post('category',[CategoryController::class,'store'])->name('category.store');;
 
         Route::get('/adminpage/users', [AdminController::class, 'showUsers'])->name('admin.users');
 
     });
 
     Route::group(['middleware' => ['user']],function (){
+
         
         Route::get('/user',[ UserController::class,'user'])->name('user');
+
         
         Route::get('/car_user',[ CarController::class,'index'])->name('user_car');
         Route::get('/car',[ CarController::class,'index'])->name('product.index');
