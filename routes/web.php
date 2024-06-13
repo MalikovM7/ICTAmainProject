@@ -51,8 +51,16 @@ Route::group(['middleware' => ['auth']],function (){
 Route::get('category',[CategoryController::class,'index'])->name('category.index');
 Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
 Route::post('category',[CategoryController::class,'store'])->name('category.store');;
+Route::get('/category/{category}/edit',[CategoryController::class,'edit'])->name('category.edit');
+Route::put('/category/{category}/update',[CategoryController::class,'update'])->name('category.update');
+Route::delete('/category/{category}/delete',[CategoryController::class,'delete'])->name('category.delete');
+
+
+
+
 
         Route::get('/adminpage/users', [AdminController::class, 'showUsers'])->name('admin.users');
+        Route::get('/adminpage/category', [AdminController::class, 'showCategories'])->name('admin.categories');
 
     });
 

@@ -55,7 +55,7 @@
                     <td>{{$car->model}}</td>
                     <td>{{$car->price}}</td>
 
-                     <td>
+                     
 
                      <!-- <a href="{{route('product.edit',['car' => $car])}}">Edit</a> -->
 
