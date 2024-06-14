@@ -59,6 +59,9 @@ Route::delete('/category/{category}/delete',[CategoryController::class,'delete']
 
 
 
+
+
+
         Route::get('/adminpage/users', [AdminController::class, 'showUsers'])->name('admin.users');
         Route::get('/adminpage/category', [AdminController::class, 'showCategories'])->name('admin.categories');
 
@@ -78,7 +81,10 @@ Route::delete('/category/{category}/delete',[CategoryController::class,'delete']
         Route::put('/car/{car}/update',[CarController::class,'update'])->name('product.update');
         Route::delete('/car/{car}/delete',[CarController::class,'delete'])->name('product.delete');
 
+//Email Route
 
+
+Route::post('send',[UserController::class,'sendnotification'])->name('user.mail');
 
         
     });

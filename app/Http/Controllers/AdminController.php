@@ -21,6 +21,15 @@ class AdminController extends Controller
         return view('categories', compact('categories'));
     }
 
+    // public function sendEmail()
+    // {
+    //     $categories = Category::all(); 
+    //     return view('categories', compact('categories'));
+    // }
+
+
+
+
 
 
 }
