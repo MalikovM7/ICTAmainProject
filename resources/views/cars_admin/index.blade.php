@@ -21,15 +21,6 @@
             </div>
         @endif
     </div>
-
-
-    <div>
-        @if(session()->has('success'))
-            <div>
-                {{session('success')}}
-            </div>
-        @endif
-    </div>
     <div>
         <div>
             <!-- <a href="">Create a Product</a> -->

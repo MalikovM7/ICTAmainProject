@@ -90,4 +90,11 @@ class CategoryController extends Controller
         }
 
 
+        public function category(){
+       
+            return view('frontend.collections.category_index');
+        
+        }
+
+
 }

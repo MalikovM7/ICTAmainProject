@@ -34,10 +34,17 @@
         <h1>Welcome to your Dashboard</h1>
         <!-- Add your dashboard content here -->
 
+        <form action="{{ route('adminmain') }}" method="post" class="mt-3">
+            @csrf
+            <button type="submit" class="btn btn-info btn-custom">Go To The Page</button>
+        </form>
+
         <form action="{{ route('logout') }}" method="post" class="mt-3">
             @csrf
             <button type="submit" class="btn btn-danger btn-custom">Logout and Login Again</button>
         </form>
+
+       
 
     </div>
 

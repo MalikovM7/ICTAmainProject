@@ -40,6 +40,20 @@
                     <form action="{{ route('user.mail') }}" method="POST">
                         @csrf
 
+                        @if(Session::has('error'))
+    <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 10px 20px; border: 1px solid #f5c6cb; border-radius: 5px; margin-bottom: 20px;">
+        <strong>Error:</strong> {{ Session::get('error') }}
+    </div>
+@endif
+
+@if(Session::has('success'))
+    <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 10px 20px; border: 1px solid #c3e6cb; border-radius: 5px; margin-bottom: 20px;">
+        <strong>Success:</strong> {{ Session::get('success') }}
+    </div>
+@endif
+
+                        
+
                         <div class="form-group">
                             <label for="greeting">Greeting</label>
                             <input class="form-control" type="text" id="greeting" name="greeting" placeholder="Enter greeting">

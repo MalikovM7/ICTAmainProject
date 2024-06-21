@@ -34,15 +34,17 @@ class MyFirstNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(object $notifiable)
     {
         return (new MailMessage)
-                    ->greeting($this->details['greeting'])
-                    ->line($this->details['body'])
-                    ->action($this->details['actiontext'], $this->details['actionurl'])
-                    ->line($this->details['lastline']);
+                    ->view('email-template', [
+                        'greeting' => $this->details['greeting'],
+                        'body' => $this->details['body'],
+                        'actiontext' => $this->details['actiontext'],
+                        'actionurl' => $this->details['actionurl'],
+                        'lastline' => $this->details['lastline']
+                    ]);
     }
-
     /**
      * Get the array representation of the notification.
      *
