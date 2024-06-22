@@ -12,6 +12,7 @@
     
 </head>
 <body>
+<div class="container mt-5">
     <h1>Cars</h1>
 
     <div>
@@ -30,7 +31,7 @@
 
         </div>
 
-        <table table class="table table-bordered">
+        <table class="table table-bordered">
             <tr>
                 
                 <th>Name</th>
@@ -80,7 +81,7 @@
 
 
 
-
+    </div>
 
 </body>
 </html>

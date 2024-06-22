@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\User;
-
+use App\Models\Category;
 use App\Models\ActivityLog;
 use Notification;
 
@@ -63,6 +63,12 @@ class UserController extends Controller
         ]);
 
         // Return response or redirect
+    }
+
+    public function showCategories()
+    {
+        $categories = Category::all(); 
+        return view('categories', compact('categories'));
     }
 
 

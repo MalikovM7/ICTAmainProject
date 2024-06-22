@@ -125,8 +125,7 @@
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
         <a href="{{ route('admin') }}">Products</a>
-        <a href="{{ route('admin.categories') }}">Categories</a>
-        <a href="{{ route('category.index') }}">Action</a>
+        <a href="{{ route('category.index') }}">Categories</a>
         <a href="{{ route('admin.users') }}">Users</a>
 
         <form action="{{ route('logout') }}" method="post" class="mt-3">

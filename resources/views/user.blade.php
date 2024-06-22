@@ -89,6 +89,12 @@
                     @csrf
                     <button type="submit" class="btn btn-danger w-25">Logout</button>
                 </form>
+
+                <form action="{{  route('user.categories') }}" method="post" class="mt-3 d-flex justify-content-center">
+                    @csrf
+                    <button type="submit" class="btn btn-info w-25">Categories</button>
+                </form>
+
                 <div class="text-center mt-4">
                     <a href="{{ route('user_car') }}" class="btn btn-outline-primary">Go to Table</a>
                 </div>

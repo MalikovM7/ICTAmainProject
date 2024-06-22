@@ -101,6 +101,10 @@ Route::get('/collections',[CategoryController::class],'category')->name('collect
 
 Route::post('send',[UserController::class,'sendnotification'])->name('user.mail');
 
+//Categories
+
+Route::get('/user/category', [UserController::class, 'showCategories'])->name('user.categories');
+Route::post('/user/category', [UserController::class, 'showCategories'])->name('user.categories');
         
     });
     
