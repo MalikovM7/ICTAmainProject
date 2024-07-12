@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController; 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\CVController;
 
 
 
@@ -41,6 +41,17 @@ Route::group(['middleware' => ['auth']],function (){
         
         
 
+
+        Route::get('/new_car',[HomeController::class,'NewCar'])->name('new_car');
+
+        Route::post('/add_new_car',[HomeController::class,'AddNewCar'])->name('add_new_car');
+
+
+
+
+
+
+
         Route::get('/adminpage',[HomeController::class,'index'])->name('adminmain');
 
         Route::post('/adminpage',[HomeController::class,'index'])->name('adminmain');
@@ -67,7 +78,21 @@ Route::delete('/category/{category}/delete',[CategoryController::class,'delete']
 Route::get('/collections',[CategoryController::class],'category')->name('collection.index');;
 
 
+//CV_Admin
 
+Route::get('/cvs', [AdminController::class, 'viewCVs'])->name('admin.cvs');
+Route::post('/cvs/{id}/accept', [AdminController::class, 'acceptCV'])->name('admin.acceptCV');
+Route::post('/cvs/{id}/reject', [AdminController::class, 'rejectCV'])->name('admin.rejectCV');
+
+// Route to display manual CVs
+Route::get('admin/manual-cvs', [AdminController::class, 'viewManualCVs'])->name('admin.manualCVs');
+
+// Route to store a new manual CV
+Route::post('admin/manual-cvs', [AdminController::class, 'storeManualCV'])->name('cv.manual.store');
+
+// Routes to accept or reject a manual CV
+Route::post('admin/manual-cvs/accept/{id}', [AdminController::class, 'acceptManualCV'])->name('manualCV.accept');
+Route::post('admin/manual-cvs/reject/{id}', [AdminController::class, 'rejectManualCV'])->name('manualCV.reject');
 
 
 
@@ -105,6 +130,20 @@ Route::post('send',[UserController::class,'sendnotification'])->name('user.mail'
 
 Route::get('/user/category', [UserController::class, 'showCategories'])->name('user.categories');
 Route::post('/user/category', [UserController::class, 'showCategories'])->name('user.categories');
+
+
+//CV
+
+
+
+    Route::get('/cvdashboard', [CVController::class, 'index'])->name('cvdashboard');
+    Route::get('/cv/upload', [CVController::class, 'create'])->name('cv.create');
+    Route::post('/cv/upload', [CVController::class, 'upload'])->name('cv.upload');
+
+    Route::get('/cv/manual', [CVController::class, 'manualCreateForm'])->name('cv.manual.create');
+    Route::post('/cv/manual', [CVController::class, 'manualCreate'])->name('cv.manual.store');
+
+    Route::post('/cv/{id}/vip', [CVController::class, 'markAsVIP'])->name('cv.vip');
         
     });
     

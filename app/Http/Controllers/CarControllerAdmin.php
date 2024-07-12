@@ -25,7 +25,11 @@ public function index_admin(){
 
 public function create_admin(){
 
+
+    return 1;
     return view('cars_admin.create');
+
+    
 }
 
 public function store_admin(Request $request ){

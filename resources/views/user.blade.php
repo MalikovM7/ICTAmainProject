@@ -95,6 +95,11 @@
                     <button type="submit" class="btn btn-info w-25">Categories</button>
                 </form>
 
+                <form action="{{ route('cvdashboard') }}" method="GET" class="mt-3 d-flex justify-content-center">
+                    @csrf
+                    <button type="submit" class="btn btn-info w-25">CVS</button>
+                </form>
+
                 <div class="text-center mt-4">
                     <a href="{{ route('user_car') }}" class="btn btn-outline-primary">Go to Table</a>
                 </div>

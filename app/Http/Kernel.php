@@ -69,4 +69,9 @@ class Kernel extends HttpKernel
         'user'=> \App\Http\Middleware\User::class,
 
     ];
+
+    protected function schedule(Schedule $schedule)
+{
+    $schedule->job(new \App\Jobs\DeactivateExpiredCVs)->daily();
+}
 }

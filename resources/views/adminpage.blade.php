@@ -124,9 +124,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
-        <a href="{{ route('admin') }}">Products</a>
-        <a href="{{ route('category.index') }}">Categories</a>
+        <a href="{{ route('admin') }}" >Products</a>
+        <a href="{{ route('category.index') }}" >Categories</a>
         <a href="{{ route('admin.users') }}">Users</a>
+
+        <a href="{{ route('admin.cvs') }}" >View Uploaded CVs</a>
+        <a href="{{ route('admin.manualCVs') }}" >View Manual CVs</a>
 
         <form action="{{ route('logout') }}" method="post" class="mt-3">
             @csrf
@@ -204,6 +207,9 @@
         // Fetch and update stats
         fetchStats();
     });
+
+
+
 
     function fetchStats() {
         // Example fetch request (replace with actual API endpoint)
