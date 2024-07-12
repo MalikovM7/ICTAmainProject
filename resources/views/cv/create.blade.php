@@ -3,28 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload CV</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    
-
-<div class="container">
-        <h1>Upload CV</h1>
+    <div class="container">
+        
+        <h1 class="mb-4">Upload CV</h1>
+        
         <form action="{{ route('cv.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
-                <label for="category" class="form-label">Category</label>
-                <input type="text" class="form-control" id="category" name="category" required>
-            </div>
-            <div class="mb-3">
+            <div class="form-group mb-3">
+    <label for="category_id" class="form-label">Category</label>
+    <select name="category_id" id="category_id" class="form-control" required>
+        <option disabled selected>Choose an Option</option>
+        @foreach($categories as $ct)
+            <option value="{{ $ct->id }}">{{ $ct->name }}</option>
+        @endforeach
+    </select>
+</div>
+            <div class="form-group mb-3">
                 <label for="file" class="form-label">CV (PDF)</label>
-                <input type="file" class="form-control" id="file" name="file" required>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".pdf" required>
             </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button type="submit" class="btn btn-custom">Upload</button>
+            <a class="btn btn-secondary btn-back" href="{{ route('user') }}" role="button">Go Back</a>
         </form>
     </div>
 
-
-
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

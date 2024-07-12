@@ -165,6 +165,21 @@ class AdminController extends Controller
         return redirect()->route('admin.manualCVs')->with('success', 'Manual CV created successfully.');
     }
 
+    public function showVIPCVs()
+    {
+        // Fetch VIP CVs from the database using DB facade
+        $vipCVs = DB::table('cvs')
+            ->where('is_vip', true)
+            ->get()
+            ->map(function ($cv) {
+                $cv->expires_at = Carbon::parse($cv->expires_at);
+                return $cv;
+            });
+
+        // Return the view with VIP CVs
+        return view('vip_cvs', ['vipCVs' => $vipCVs]);
+    }
+
 
 
 }

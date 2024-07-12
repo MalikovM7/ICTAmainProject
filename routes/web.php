@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CVController;
+use App\Http\Controllers\SearchController;
 
 
 
@@ -72,7 +73,7 @@ Route::get('/category/{category}/edit',[CategoryController::class,'edit'])->name
 Route::put('/category/{category}/update',[CategoryController::class,'update'])->name('category.update');
 Route::delete('/category/{category}/delete',[CategoryController::class,'delete'])->name('category.delete');
 
-
+Route::resource('categories', CategoryController::class);
 //Collections
 
 Route::get('/collections',[CategoryController::class],'category')->name('collection.index');;
@@ -94,8 +95,7 @@ Route::post('admin/manual-cvs', [AdminController::class, 'storeManualCV'])->name
 Route::post('admin/manual-cvs/accept/{id}', [AdminController::class, 'acceptManualCV'])->name('manualCV.accept');
 Route::post('admin/manual-cvs/reject/{id}', [AdminController::class, 'rejectManualCV'])->name('manualCV.reject');
 
-
-
+Route::get('/vip-cvs', [AdminController::class, 'showVIPCVs'])->name('vip_cvs');
 
 
 
@@ -144,7 +144,18 @@ Route::post('/user/category', [UserController::class, 'showCategories'])->name('
     Route::post('/cv/manual', [CVController::class, 'manualCreate'])->name('cv.manual.store');
 
     Route::post('/cv/{id}/vip', [CVController::class, 'markAsVIP'])->name('cv.vip');
+
+    Route::get('/manual-cvs', [CVController::class, 'viewManualCVs'])->name('manual_cvs');
+
+ 
         
     });
+
+
+
+    //Search 
+
+    // Route for handling search by category
+Route::get('/search', [SearchController::class, 'search'])->name('search');
     
 });

@@ -9,14 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $table= 'categories';
+    protected $fillable = ['name'];
 
-    protected $fillable =[
-'bantype',
-'fueltype',
-'gearbox',
-'transmission'
+    public function cvs()
+    {
+        return $this->hasMany(CV::class);
+    }
 
 
-];
 }

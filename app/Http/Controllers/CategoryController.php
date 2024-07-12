@@ -10,91 +10,50 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index(){
-
-        $categories= Category::all();
-        return view('category.index',['categories'=>$categories]);
+    public function index()
+    {
+        $categories = Category::all();
+        return view('category.index', compact('categories'));
     }
-    public function create(){
 
+    public function create()
+    {
         return view('category.create');
     }
 
-    public function store(Request $request ){
-
-        // return $request;
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'meta-title' => 'nullable|string|max:255',
-            'meta-keyword' => 'nullable|string',
-            'meta-description' => 'nullable|string',
-       
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:categories,name'
         ]);
 
-        if($request->hasFile('image')){
+        Category::create($request->all());
 
-          $file=$request->file('image');
-          
-          $filename= $file->getClientOriginalName();
-
-          $file->move('uploads/category',$filename);
-
-          $data['image'] = 'category/'.$filename;
-   
-        }
-
-      
-        $newProduct = Category::create($data);
-
-        return redirect()->route('category.index');
-    
-    
-    
-        return redirect('category')->with('message','Created Successfully');
-    
+        return redirect()->route('category.index')->with('success', 'Category created successfully.');
     }
 
+    public function edit(Category $category)
+    {
+        return view('category.edit', compact('category'));
+    }
 
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|unique:categories,name,' . $category->id
+        ]);
 
-    public function edit(Category $category){
+        $category->update($request->all());
 
-        return view('category.edit',['category'=>$category]);
-        
-        }
-        
-        
-        public function update(Category $category, Request $request){
-            $data = $request->validate([
-                'name' => 'required|string|max:255',
-                'slug' => 'required|string|max:255',
-                'description' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'meta-title' => 'nullable|string|max:255',
-                'meta-keyword' => 'nullable|string',
-                'meta-description' => 'nullable|string',
-        
-            ]);
-        
-            $category->update($data);
-        
-            return redirect(route('category.index'))->with('success', 'Category Updated Succesffully');
-        
-        }
+        return redirect()->route('category.index')->with('success', 'Category updated successfully.');
+    }
 
-        public function delete(Category $category){
-            $category->delete();
-            return redirect(route('category.index'))->with('success', 'Car deleted Succesffully');
-        }
+    public function destroy(Category $category)
+    {
+        $category->delete();
 
-
-        public function category(){
-       
-            return view('frontend.collections.category_index');
-        
-        }
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
+    }
 
 
 }

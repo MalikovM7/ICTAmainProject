@@ -35,7 +35,7 @@
 </head>
 <body>
     <div class="container">
-        <a class="btn btn-secondary btn-back" href="{{ route('adminmain') }}" role="button">Go Back</a>
+        <a class="btn btn-secondary btn-back" href="{{ route('user') }}" role="button">Go Back</a>
         <h2 class="mb-4">Manual CVs</h2>
         @if (session('success'))
             <div class="alert alert-success">
@@ -50,9 +50,7 @@
                         <th>User ID</th>
                         <th>Category</th>
                         <th>Details</th>
-                        <th>VIP Status</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -62,20 +60,7 @@
                             <td>{{ $cv->user_id }}</td>
                             <td>{{ $cv->category_name }}</td>
                             <td>{{ $cv->details ?? 'No Details' }}</td>
-                            <td>{{ $cv->is_vip ? 'Yes' : 'No' }}</td>
-                            <td>{{ $cv->status ?? 'Pending' }}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <form action="{{ route('manualCV.accept', $cv->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
-                                    </form>
-                                    <form action="{{ route('manualCV.reject', $cv->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
-                                    </form>
-                                </div>
-                            </td>
+                          
                         </tr>
                     @endforeach
                 </tbody>

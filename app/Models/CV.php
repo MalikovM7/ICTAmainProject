@@ -9,7 +9,7 @@ class CV extends Model
 {
 
     use HasFactory;             
-    protected $fillable = ['user_id', 'category', 'file_path', 'details', 'is_vip', 'expires_at','status'];
+    protected $fillable = ['user_id', 'category_id','file_path', 'details', 'is_vip', 'expires_at','status'];
 
 
     public function user()

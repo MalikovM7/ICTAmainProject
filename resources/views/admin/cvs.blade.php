@@ -55,7 +55,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>User ID</th>
-                    <th>Category</th>
+                    <th>Category_Id</th>
+                    <th>Category_Name</th>
                     <th>File Path</th>
                     <th>Details</th>
                     <th>VIP Status</th>
@@ -68,7 +69,8 @@
                 @foreach($cvs as $cv)
                 <tr>
                     <td>{{ $cv->user_id }}</td>
-                    <td>{{ $cv->category }}</td>
+                    <td>{{ $cv->category_id }}</td>
+                    <td>{{ $cv->category_name }}</td>
                     <td>
                         @if($cv->file_path)
                             <a href="{{ asset('storage/' . $cv->file_path) }}" target="_blank">{{ basename($cv->file_path) }}</a>

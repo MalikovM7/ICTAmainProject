@@ -8,115 +8,130 @@
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    body {
-        display: flex;
-    }
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    .sidebar {
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 250px;
-        background-color: #343a40;
-        color: #fff;
-        padding-top: 20px;
-    }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+        }
 
-    .sidebar a {
-        color: #fff;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-    }
+        .sidebar h4 {
+            color: #fff;
+        }
 
-    .sidebar a:hover {
-        background-color: #495057;
-    }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
 
-    .content {
-        margin-left: 250px;
-        padding: 20px;
-        width: 100%;
-    }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
 
-    .admin-dashboard {
-        padding: 20px;
-    }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
 
-    .dashboard-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
+        .admin-dashboard {
+            padding: 20px;
+        }
 
-    .dashboard-overview {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 30px;
-    }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    .stats-card {
-        background: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        width: 22%;
-    }
+        .dashboard-overview {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
 
-    .stats-number {
-        font-size: 2em;
-        font-weight: bold;
-    }
+        .stats-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 30%;
+        }
 
-    .stats-change {
-        color: #888;
-    }
+        .stats-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
 
-    .dashboard-recent-activity {
-        margin-bottom: 30px;
-    }
+        .stats-change {
+            color: #888;
+        }
 
-    .activity-list {
-        list-style-type: none;
-        padding: 0;
-    }
+        .dashboard-recent-activity {
+            margin-bottom: 30px;
+        }
 
-    .activity-list li {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border-bottom: 1px solid #e0e0e0;
-    }
+        .activity-list {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .activity-time {
-        font-weight: bold;
-    }
+        .activity-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
 
-    .dashboard-quick-actions {
-        margin-bottom: 30px;
-    }
+        .activity-time {
+            font-weight: bold;
+        }
 
-    .actions-grid {
-        display: flex;
-        justify-content: space-around;
-    }
+        .dashboard-quick-actions {
+            margin-bottom: 30px;
+        }
 
-    .action-button {
-        background: #007bff;
-        color: white;
-        padding: 15px;
-        border: none;
-        border-radius: 8px;
-        text-align: center;
-        width: 22%;
-        font-size: 1em;
-    }
+        .actions-grid {
+            display: flex;
+            justify-content: space-between;
+        }
 
-    .action-button i {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 1.5em;
-    }
+        .action-button {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            width: 30%;
+            font-size: 1em;
+        }
+
+        .action-button i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        .btn-custom {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-custom:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
@@ -124,12 +139,11 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
-        <a href="{{ route('admin') }}" >Products</a>
-        <a href="{{ route('category.index') }}" >Categories</a>
+        <a href="{{ route('admin') }}">Products</a>
+        <a href="{{ route('category.index') }}">Categories</a>
         <a href="{{ route('admin.users') }}">Users</a>
-
-        <a href="{{ route('admin.cvs') }}" >View Uploaded CVs</a>
-        <a href="{{ route('admin.manualCVs') }}" >View Manual CVs</a>
+        <a href="{{ route('admin.cvs') }}">View Uploaded CVs</a>
+        <a href="{{ route('admin.manualCVs') }}">View Manual CVs</a>
 
         <form action="{{ route('logout') }}" method="post" class="mt-3">
             @csrf
@@ -146,37 +160,54 @@
                     <p>Here is a quick overview of the system status and recent activity.</p>
                 </header>
 
+                <!-- VIP CVs Section -->
+                <div class="section mb-4">
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white">
+                            <h2>VIP CVs</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Explore our VIP CVs to find the most qualified candidates for your job openings. VIP CVs are highlighted for your convenience.</p>
+                            <a href="{{ route('vip_cvs') }}" class="btn btn-secondary">View VIP CVs</a>
+                        </div>
+                    </div>
+                </div>
+
                 <section class="dashboard-overview">
                     <div class="stats-card">
                         <h2>Total Users</h2>
                         @isset($usercount)
-                        <p>Total Users: {{ $usercount }}</p>
+                        <p class="stats-number">{{ $usercount }}</p>
                         @endisset
                     </div>
                     <div class="stats-card">
                         @isset($activeSessionsCount)
                         <h2>Active Sessions</h2>
-                        <p>Number of Active Sessions: {{ $activeSessionsCount }}</p>
+                        <p class="stats-number">{{ $activeSessionsCount }}</p>
                         @endisset
                     </div>
                     <div class="stats-card">
                         @isset($newSignupsToday)
                         <h2>New Signups</h2>
-                        <p>New Signups Today: {{ $newSignupsToday }}</p>
-                        <p>New Signups This Week: {{ $newSignupsThisWeek }}</p>
-                        <p>New Signups This Month: {{ $newSignupsThisMonth }}</p>
+                        <p class="stats-number">Today: {{ $newSignupsToday }}</p>
+                        <p class="stats-number">This Week: {{ $newSignupsThisWeek }}</p>
+                        <p class="stats-number">This Month: {{ $newSignupsThisMonth }}</p>
                         @endisset
                     </div>
                 </section>
 
                 <section class="dashboard-recent-activity">
-                @isset($activities)
+                    @isset($activities)
                     <h2>Recent Activity</h2>
-                    
-                    @foreach ($activities as $activity)
-    <p>{{ $activity->created_at }} - User {{ $activity->user->name }} {{ $activity->action }}</p>
-@endforeach
-@endisset
+                    <ul class="activity-list">
+                        @foreach ($activities as $activity)
+                        <li>
+                            <span class="activity-time">{{ $activity->created_at->format('M d, Y H:i') }}</span>
+                            <span>User {{ $activity->user->name }} {{ $activity->action }}</span>
+                        </li>
+                        @endforeach
+                    </ul>
+                    @endisset
                 </section>
 
                 <section class="dashboard-quick-actions">
@@ -204,12 +235,9 @@
     <!-- Custom JS for dynamic content (optional) -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Fetch and update stats
+        // Fetch and update stats (example, replace with actual endpoint)
         fetchStats();
     });
-
-
-
 
     function fetchStats() {
         // Example fetch request (replace with actual API endpoint)
@@ -219,7 +247,7 @@
                 document.querySelector('.stats-card:nth-child(1) .stats-number').textContent = data.totalUsers;
                 document.querySelector('.stats-card:nth-child(2) .stats-number').textContent = data.activeSessions;
                 document.querySelector('.stats-card:nth-child(3) .stats-number').textContent = data.newSignups;
-                document.querySelector('.stats-card:nth-child(4) .stats-number').textContent = data.openTickets;
+                // Add more updates as needed
             });
     }
     </script>
